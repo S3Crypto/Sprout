@@ -1,84 +1,39 @@
 "use client"
 
-import Link from "next/link"
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
+import { Home, Book, Leaf, Info } from 'lucide-react'
+import { NavBar } from "@/components/ui/tubelight-navbar"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
-    const [position, setPosition] = useState({
-        left: 0,
-        width: 0,
-        opacity: 0,
-    })
+    // Navigation items that match the sections of your landing page
+    const navItems = [
+        { name: 'Home', url: '#', icon: Home },
+        { name: 'How It Works', url: '#how-it-works', icon: Book },
+        { name: 'Why Sprout', url: '#why-sprout', icon: Leaf },
+        { name: 'Concept', url: '#concept', icon: Info }
+    ]
 
     return (
-        <header className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
-            <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-[#2E7D32]">🌱</span>
-                <span className="font-mono text-xl font-bold">Sprout</span>
-            </div>
+        <>
+            <header className="relative h-20">
+                <div className="container mx-auto flex max-w-7xl items-center justify-between h-full px-4">
+                    {/* Logo on the left */}
+                    <div className="flex items-center gap-2 z-10">
+                        <span className="text-2xl font-bold text-[#2E7D32]">🌱</span>
+                        <span className="font-mono text-xl font-bold">Sprout</span>
+                    </div>
 
-            <nav className="hidden md:block">
-                <ul
-                    className="relative flex w-fit rounded-full border border-gray-700 bg-[#1A1E24] p-1"
-                    onMouseLeave={() => setPosition((prev) => ({ ...prev, opacity: 0 }))}
-                >
-                    <NavItem href="#how-it-works" setPosition={setPosition}>How It Works</NavItem>
-                    <NavItem href="#why-sprout" setPosition={setPosition}>Why Sprout</NavItem>
-                    <NavItem href="#concept" setPosition={setPosition}>Concept</NavItem>
+                    {/* CTA Button on the right */}
+                    <div className="z-10">
+                        <Button className="hidden bg-[#4FC3F7] text-white hover:bg-[#4FC3F7]/90 md:inline-flex">
+                            Join Waitlist
+                        </Button>
+                    </div>
+                </div>
+            </header>
 
-                    <Cursor position={position} />
-                </ul>
-            </nav>
-
-            <Button className="hidden bg-[#4FC3F7] text-white hover:bg-[#4FC3F7]/90 md:inline-flex">
-                Join Waitlist
-            </Button>
-        </header>
-    )
-}
-
-const NavItem = ({
-    children,
-    setPosition,
-    href,
-}: {
-    children: React.ReactNode
-    setPosition: React.Dispatch<React.SetStateAction<{
-        left: number
-        width: number
-        opacity: number
-    }>>
-    href: string
-}) => {
-    const ref = useRef<HTMLLIElement>(null)
-
-    return (
-        <li
-            ref={ref}
-            onMouseEnter={() => {
-                if (!ref.current) return
-
-                const { width } = ref.current.getBoundingClientRect()
-                setPosition({
-                    width,
-                    opacity: 1,
-                    left: ref.current.offsetLeft,
-                })
-            }}
-            className="relative z-10 block cursor-pointer px-4 py-2 text-sm text-white mix-blend-difference"
-        >
-            <Link href={href}>{children}</Link>
-        </li>
-    )
-}
-
-const Cursor = ({ position }: { position: { left: number; width: number; opacity: number } }) => {
-    return (
-        <motion.li
-            animate={position}
-            className="absolute z-0 h-8 rounded-full bg-[#4FC3F7]"
-        />
+            {/* Separate NavBar component that will be fixed */}
+            <NavBar items={navItems} />
+        </>
     )
 }

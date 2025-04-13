@@ -24,7 +24,7 @@ export function TerminalAnimation() {
     return () => clearInterval(interval)
   }, [])
 
-  // Only render animations on the client
+  // Server-side rendering or initial client render
   if (!isMounted) {
     return (
       <div className="rounded-md bg-[#1A1E24] p-4 font-mono text-sm text-green-400">
@@ -33,6 +33,7 @@ export function TerminalAnimation() {
     )
   }
 
+  // Client-side render after component has mounted
   return (
     <div className="rounded-md bg-[#1A1E24] p-4 font-mono text-sm text-green-400">
       <pre className="whitespace-pre-wrap">{text}</pre>

@@ -12,22 +12,33 @@ export function TimerDemo() {
   const [plantGrowth, setPlantGrowth] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
 
+  // Set mounted state after component mounts (client-side only)
   useEffect(() => {
     setIsMounted(true)
+  }, [])
 
-    let interval: NodeJS.Timeout
+  // Separate effect for timer logic, dependent on isRunning and isMounted
+  useEffect(() => {
+    if (!isMounted) return;
+
+    let interval: NodeJS.Timeout | undefined;
 
     if (isRunning) {
       interval = setInterval(() => {
-        setSeconds((prev) => prev + 1)
-        if (seconds % 5 === 0 && seconds > 0) {
-          setPlantGrowth((prev) => Math.min(prev + 5, 100))
-        }
-      }, 1000)
+        setSeconds((prev) => {
+          const newValue = prev + 1;
+          if (newValue % 5 === 0 && newValue > 0) {
+            setPlantGrowth((prev) => Math.min(prev + 5, 100));
+          }
+          return newValue;
+        });
+      }, 1000);
     }
 
-    return () => clearInterval(interval)
-  }, [isRunning, seconds])
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isRunning, isMounted, seconds]);
 
   const formatTime = (totalSeconds: number) => {
     const minutes = Math.floor(totalSeconds / 60)
@@ -41,20 +52,32 @@ export function TimerDemo() {
     setPlantGrowth(0)
   }
 
-  // Only render animations on the client
+  // Server-side and initial client render
   if (!isMounted) {
     return (
-      <div className="flex flex-col items-center rounded-lg border border-gray-800 bg-[#1A1E24] p-6">
+      <div className="flex flex-col items-center">
         <div className="mb-4 font-mono text-4xl font-bold text-[#4FC3F7]">00:00</div>
+
         <div className="h-48 w-full"></div>
+
         <div className="mt-6 flex gap-4">
-          <Button variant="outline" size="icon" className="h-10 w-10 rounded-full border-[#4FC3F7] text-[#4FC3F7]">
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-10 w-10 rounded-full border-[#4FC3F7] text-[#4FC3F7]"
+          >
             <Play className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" className="h-10 w-10 rounded-full border-gray-600 text-gray-400">
+
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-10 w-10 rounded-full border-gray-600 text-gray-400"
+          >
             <RefreshCw className="h-4 w-4" />
           </Button>
         </div>
+
         <div className="mt-4 w-full">
           <div className="h-2 w-full overflow-hidden rounded-full bg-gray-800">
             <div className="h-full w-0 bg-[#2E7D32]"></div>
@@ -65,8 +88,9 @@ export function TimerDemo() {
     )
   }
 
+  // Client-side render after mounting
   return (
-    <div className="flex flex-col items-center rounded-lg border border-gray-800 bg-[#1A1E24] p-6">
+    <div className="flex flex-col items-center">
       <div className="mb-4 font-mono text-4xl font-bold text-[#4FC3F7]">{formatTime(seconds)}</div>
 
       <div className="h-48 w-full">

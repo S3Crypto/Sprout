@@ -23,7 +23,7 @@ export function AnimatedPlant() {
     return () => clearInterval(interval)
   }, [])
 
-  // Only render animations on the client
+  // Server-side rendering or initial client render
   if (!isMounted) {
     return (
       <div className="relative h-64 w-full">
@@ -37,6 +37,7 @@ export function AnimatedPlant() {
     )
   }
 
+  // Client-side render after component has mounted
   return (
     <div className="relative h-64 w-full">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2">

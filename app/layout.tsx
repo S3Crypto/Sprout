@@ -1,6 +1,8 @@
 import type React from "react"
 import "./globals.css"
 import { Inter, JetBrains_Mono } from "next/font/google"
+import { Footerdemo } from "@/components/ui/footer-section"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`} suppressHydrationWarning>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          {children}
+          <Footerdemo />
+        </ThemeProvider>
       </body>
     </html>
   )

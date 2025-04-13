@@ -5,12 +5,10 @@ import { NavBar } from "@/components/ui/tubelight-navbar"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
-    // Navigation items that match the sections of your landing page
     const navItems = [
-        { name: 'Home', url: '#', icon: Home },
+        { name: 'Concept', url: '#concept', icon: Info },
         { name: 'How It Works', url: '#how-it-works', icon: Book },
-        { name: 'Why Sprout', url: '#why-sprout', icon: Leaf },
-        { name: 'Concept', url: '#concept', icon: Info }
+        { name: 'Why Sprout', url: '#why-sprout', icon: Leaf }
     ]
 
     return (

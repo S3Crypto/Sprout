@@ -1,7 +1,6 @@
 import type React from "react"
 import "./globals.css"
 import { Inter, JetBrains_Mono } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,11 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>{children}</body>
     </html>
   )
 }

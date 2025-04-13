@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { TimerDemo } from "@/components/timer-demo"
 import { TerminalAnimation } from "@/components/terminal-animation"
+import { SproutTestimonials } from "@/components/sprout-testimonials"
 
 export default function EnhancedPage() {
   return (
@@ -107,6 +108,8 @@ export default function EnhancedPage() {
             </div>
           </div>
         </section>
+
+        <SproutTestimonials />
 
         {/* Why Sprout Section */}
         <section id="why-sprout" className="bg-white py-16 text-[#263238] md:py-24">

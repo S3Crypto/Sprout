@@ -12,15 +12,15 @@ interface TestimonialsSectionProps {
   className?: string
 }
 
-export function TestimonialsSection({ 
+export function TestimonialsSection({
   title,
   description,
   testimonials,
-  className 
+  className
 }: TestimonialsSectionProps) {
   return (
     <section className={cn(
-      "bg-background text-foreground",
+      "bg-[#1A1E24] text-white", // Changed background color to match Sprout's dark theme
       "py-12 sm:py-24 md:py-32 px-0",
       className
     )}>
@@ -35,11 +35,14 @@ export function TestimonialsSection({
         </div>
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          {/* This is the marquee container */}
           <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s]">
+            {/* This is the marquee content that animates */}
             <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
+              {/* Duplicate testimonials multiple times to ensure continuous scrolling */}
               {[...Array(4)].map((_, setIndex) => (
                 testimonials.map((testimonial, i) => (
-                  <TestimonialCard 
+                  <TestimonialCard
                     key={`${setIndex}-${i}`}
                     {...testimonial}
                   />
@@ -48,8 +51,9 @@ export function TestimonialsSection({
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-background sm:block" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-background sm:block" />
+          {/* Gradient overlay for smooth fade-in/out effect */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-[#1A1E24] sm:block" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-[#1A1E24] sm:block" />
         </div>
       </div>
     </section>

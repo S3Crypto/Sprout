@@ -1,14 +1,36 @@
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { TimerDemo } from "@/components/timer-demo"
-import { TerminalAnimation } from "@/components/terminal-animation"
+"use client";
+
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { TimerDemo } from "@/components/timer-demo";
+import { TerminalAnimation } from "@/components/terminal-animation";
+import { TextRotate } from "@/components/ui/text-rotate";
 
 export function HeroSection() {
     return (
         <section className="container mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-16 md:py-32">
             <div className="text-center">
                 <h1 className="font-mono text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-                    Grow your <span className="text-[#4FC3F7]">Flow.</span>
+                    <span className="flex items-center whitespace-pre justify-center">
+                        <span className="flex items-center">Grow your </span>
+                        <TextRotate
+                            texts={[
+                                "Flow.",
+                                "Focus.",
+                                "Sprout."
+                            ]}
+                            mainClassName="text-white px-2 sm:px-2 md:px-3 bg-[#4FC3F7] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg flex items-center"
+                            staggerFrom="first"
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            exit={{ y: "-120%" }}
+                            staggerDuration={0.025}
+                            splitLevelClassName="overflow-hidden"
+                            elementLevelClassName="inline-block"
+                            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                            rotationInterval={3000}
+                        />
+                    </span>
                 </h1>
                 <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-300">
                     A mindful productivity companion for developers that grows as you focus.
@@ -43,5 +65,5 @@ export function HeroSection() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

@@ -33,7 +33,7 @@ function Footerdemo() {
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
             <p className="mb-6 text-muted-foreground">
-              Join our newsletter for the latest updates and exclusive offers.
+              Join our waitlist for the latest updates.
             </p>
             <form className="relative">
               <Input
@@ -59,26 +59,21 @@ function Footerdemo() {
                 Home
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                About Us
+                How It Works
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                Services
+                Why Sprout
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                Products
-              </a>
-              <a href="#" className="block transition-colors hover:text-primary">
-                Contact
+                Concept
               </a>
             </nav>
           </div>
           <div>
             <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
             <address className="space-y-2 text-sm not-italic">
-              <p>123 Innovation Street</p>
-              <p>Tech City, TC 12345</p>
-              <p>Phone: (123) 456-7890</p>
-              <p>Email: hello@example.com</p>
+              <p>Location: Manchester, UK</p>
+              <p>Email: mike.s3crypto@gmail.com</p>
             </address>
           </div>
           <div className="relative">

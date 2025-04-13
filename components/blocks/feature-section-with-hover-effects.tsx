@@ -2,32 +2,56 @@ import { cn } from "@/lib/utils";
 import {
   IconTerminal2,
   IconClock,
-  IconHeart,
-  IconPlant
+  IconActivity,
+  IconDroplet,
+  IconEye,
+  IconPlant,
+  IconMoodCheck,
+  IconTrophy,
 } from "@tabler/icons-react";
 
 export function FeaturesSectionWithHoverEffects() {
   const features = [
     {
       title: "Set your goal",
-      description: "Define what you want to accomplish during your focus session.",
+      description: "Define what you want to achieve during your focus session.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Start your flow timer",
-      description: "Begin your focused work session with our mindful timer.",
+      title: "Pomodoro timer",
+      description: "Kick off your work with our built-in Pomodoro timer for focused sessions.",
       icon: <IconClock />,
     },
     {
-      title: "Hydrate, stretch, breathe",
-      description: "Take mindful breaks to maintain your energy and focus.",
-      icon: <IconHeart />,
+      title: "Stretch Reminders",
+      description: "Get gentle nudges to stretch and refresh while coding.",
+      icon: <IconActivity />,
+    },
+    {
+      title: "Hydration Tracker",
+      description: "Keep track of your water intake and stay hydrated all day.",
+      icon: <IconDroplet />,
+    },
+    {
+      title: "Eye Health Reminder",
+      description: "Remember to give your eyes a break with a quick 20-20-20 check.",
+      icon: <IconEye />,
     },
     {
       title: "Grow your plant",
-      description: "Watch your digital plant grow as you maintain consistent focus.",
+      description: "Watch your digital plant thrive as you maintain your focus.",
       icon: <IconPlant />,
-    }
+    },
+    {
+      title: "Guided Reflection Debrief (coming soon)",
+      description: "Wrap up your session with a quick debrief to reflect on your progress.",
+      icon: <IconMoodCheck />,
+    },
+    {
+      title: "Streaks & XP System (coming soon)",
+      description: "Earn XP and build up streaks as you consistently reach your goals.",
+      icon: <IconTrophy />,
+    },
   ];
 
   return (
